@@ -1,5 +1,5 @@
-Import-Module -Name BurntToast
 $ErrorActionPreference = "Stop"
+Import-Module -Name BurntToast
 
 # Get list of outdated packages
 $outdated = & choco outdated
