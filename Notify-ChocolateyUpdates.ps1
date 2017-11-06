@@ -36,6 +36,5 @@ If ( $packageUpdates.count -gt 0 ) {
   if ( $pinnedUpdateCount -gt 0 ) {
     $titleString += " (${pinnedUpdateCount} hidden)"
   }
-  New-BurntToastNotification -SnoozeAndDismiss `
-    -Text $titleString, $packageString
+  New-BurntToastNotification -Text $titleString, $packageString
 }
