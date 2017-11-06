@@ -4,7 +4,8 @@ Param()
 $ErrorActionPreference = "Stop"
 Import-Module -Name BurntToast -Verbose:$false
 
-$appLogo = 'nonexistant'
+# TODO: When BurntToast reimplements -AppId, uncomment the related code
+$appId = "Chocolatey"
 
 # Get list of outdated packages
 Write-Verbose 'Getting list of outdated packages'
@@ -22,7 +23,7 @@ Write-Verbose ''
 # Make sure `choco outdated` worked
 if ( $LASTEXITCODE -ne 0 ) {
   Write-Verbose 'Failed to check outdated packages, creating notification'
-  New-BurntToastNotification `
+  New-BurntToastNotification ` # -AppId $appId `
     -Text "Failed to check package updates", "``choco outdated`` returned ${LASTEXITCODE}"
   Write-Verbose
   exit 1
@@ -58,6 +59,5 @@ if ( $packageUpdates.count -gt 0 ) {
   }
 
   Write-Verbose 'Creating notification'
-  New-BurntToastNotification -Text $titleString, $packageString `
-    -AppLogo $nonexistant
+  New-BurntToastNotification -Text $titleString, $packageString # -AppId $appId
 }
